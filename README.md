@@ -1,3 +1,5 @@
 Through this project the following subjects were covered and learned:
 
 - MVC architecture
+- APIs
+- Design pattern: Publisher/subscriber
