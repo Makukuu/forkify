@@ -22,7 +22,11 @@
     "process": "^0.11.10"
   },
   "dependencies": {
+    "@babel/plugin-proposal-private-methods": "^7.18.6",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.0",
     "core-js": "^3.28.0",
+    "fractional": "^1.0.0",
+    "fracty": "^1.0.11",
     "regenerator-runtime": "^0.13.11"
   }
 }
