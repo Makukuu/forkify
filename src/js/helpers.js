@@ -18,7 +18,9 @@ export const getJSON = async function (url) {
     if (!res.ok) throw new Error(`${data.message} (${res.status})`);
     return data;
   } catch (err) {
-    // otherwise promise that getJSON return is fulfilled even with an error
+    // we have to throw the error again
+    //otherwise promise that getJSON returns is fulfilled
+    // even with an error
     throw err;
   }
 };
