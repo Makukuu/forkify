@@ -4,7 +4,6 @@
 // for any static asset we need url: at the beginning
 import icons from "url:../../img/icons.svg";
 import fracty from "fracty";
-console.log(fracty);
 class RecipeView {
   #parentElement = document.querySelector(".recipe");
   #data;
@@ -76,7 +75,6 @@ class RecipeView {
   }
 
   #generateMarkup() {
-    console.log(this.#data);
     return `
       <figure class="recipe__fig">
             <img src="${this.#data.image}"  alt="${
