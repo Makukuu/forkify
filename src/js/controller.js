@@ -2,6 +2,7 @@ import * as model from "./model.js";
 import recipeView from "./views/recipeView.js";
 import searchView from "./views/searchView.js";
 import resultsView from "./views/resultsView.js";
+import paginationView from "./views/paginationView.js";
 
 // for pollyfiling everything else
 import "core-js/stable";
@@ -9,9 +10,9 @@ import "core-js/stable";
 import "regenerator-runtime/runtime";
 
 // available to us when using parcel
-if (module.hot) {
-  module.hot.accept();
-}
+// if (module.hot) {
+//   module.hot.accept();
+// }
 
 const recipeContainer = document.querySelector(".recipe");
 
@@ -54,16 +55,36 @@ const controlSearchResults = async function () {
     await model.loadSearchResults(query);
 
     // 3) Render results
-    console.log(model.state.search.results);
-    resultsView.render(model.state.search.results);
+    resultsView.render(model.getSearchResultsPage());
+
+    // 4) Render initial pagination
+    paginationView.render(model.state.search);
   } catch (err) {
     // console.err(err);
   }
 };
 
+const controlPagination = function (goToPage) {
+  // 3) Render NEW results
+  resultsView.render(model.getSearchResultsPage(goToPage));
+
+  // 4) Render NEW  pagination buttons
+  paginationView.render(model.state.search);
+};
+
+const controlServings = function (newServings) {
+  // Update the recipe servings (in state)
+  model.updateServings(newServings);
+
+  // Update the recipe view
+  recipeView.render(model.state.recipe);
+};
+
 const init = function () {
   recipeView.addHandlerRender(controlRecipes);
+  recipeView.addHandlerUpdateServings(controlServings);
   searchView.addHandlerSearch(controlSearchResults);
+  paginationView.addHandlerClick(controlPagination);
 };
 
 init();

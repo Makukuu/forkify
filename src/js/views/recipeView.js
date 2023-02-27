@@ -20,6 +20,18 @@ class RecipeView extends View {
     );
   }
 
+  addHandlerUpdateServings(handler) {
+    this._parentElement.addEventListener("click", function (e) {
+      const btn = e.target.closest(".btn--update-servings");
+      // parent delegation -> listening for the click on the whole recipe
+      // guard for checking if we clicked on a button, if not btn = undefined
+      if (!btn) return;
+      // camel case because there is a dash in the property !!!
+      const { updateTo } = btn.dataset;
+      if (+updateTo > 0) handler(+updateTo);
+    });
+  }
+
   _generateMarkup() {
     return `
       <figure class="recipe__fig">
@@ -51,12 +63,16 @@ class RecipeView extends View {
               <span class="recipe__info-text">servings</span>
 
               <div class="recipe__info-buttons">
-                <button class="btn--tiny btn--increase-servings">
+                <button class="btn--tiny btn--update-servings" data-update-to="${
+                  this._data.servings - 1
+                }">
                   <svg>
                     <use href="${icons}#icon-minus-circle"></use>
                   </svg>
                 </button>
-                <button class="btn--tiny btn--increase-servings">
+                <button class="btn--tiny btn--update-servings" data-update-to="${
+                  this._data.servings + 1
+                }">
                   <svg>
                     <use href="${icons}#icon-plus-circle"></use>
                   </svg>
