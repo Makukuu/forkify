@@ -1,7 +1,7 @@
 import icons from "url:../../img/icons.svg";
 export default class View {
   _data;
-  render(data) {
+  render(data, render = true) {
     // second check because if there are no results it will return an
     // empty array which passes the !data guard
     if (!data || (Array.isArray(data) && data.length === 0))
@@ -9,6 +9,9 @@ export default class View {
 
     this._data = data;
     const markup = this._generateMarkup();
+
+    if (!render) return markup;
+
     // before we inject markup we get rid of anything that was there already
     this._clear();
     this._parentElement.insertAdjacentHTML("afterbegin", markup);
