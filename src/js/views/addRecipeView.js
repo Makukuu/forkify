@@ -3,6 +3,7 @@ import icons from "url:../../img/icons.svg";
 
 class AddRecipeView extends View {
   _parentElement = document.querySelector(".upload");
+  _message = "Recipe was succesfully uploaded!";
 
   _window = document.querySelector(".add-recipe-window");
   _overlay = document.querySelector(".overlay");
@@ -36,7 +37,8 @@ class AddRecipeView extends View {
   addHandlerUpload(handler) {
     this._parentElement.addEventListener("submit", function (e) {
       e.preventDefault();
-      // we have to pass in a form and return an object that we spread
+      // FormData: we have to pass in a form
+      // returns an object that we  will spread
       // into an array
       const dataArr = [...new FormData(this)];
       // takes an array of entries and converts it to an object
