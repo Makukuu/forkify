@@ -1,8 +1,7 @@
-Through this project the following subjects were covered and learned:
+## Forkify
 
-- MVC architecture
-- APIs
-- Design pattern: Publisher/subscriber
+Forkify is a food recipe service built using JavaScript, which allows users to search for various recipes and bookmark them. 
+This project is meant to showcase the JavaScript skills and serve as a portfolio piece.
 
-Live preview:
-https://forkify-makuku.netlify.app/
+[Live preview](https://forkify-makuku.netlify.app/)
+
